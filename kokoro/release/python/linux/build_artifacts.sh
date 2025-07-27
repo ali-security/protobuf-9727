@@ -41,7 +41,19 @@ build_artifact_version() {
   cat $REPO_DIR/python/setup.py
 
   export DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
-  build_wheel $REPO_DIR/python $PLAT
+  # build_wheel $REPO_DIR/python $PLAT
+
+  # Build none-any.whl
+  pushd $REPO_DIR/python
+  python setup.py bdist_wheel --universal
+  mv dist/*.whl $ARTIFACT_DIR
+  popd
+
+  # Build tar.gz
+  pushd $REPO_DIR/python
+  python setup.py sdist
+  mv dist/*.tar.gz $ARTIFACT_DIR
+  popd
 
   mv wheelhouse/* $ARTIFACT_DIR
 
@@ -51,7 +63,7 @@ build_artifact_version() {
 }
 
 build_artifact_version 3.5
-build_artifact_version 3.6
-build_artifact_version 3.7
-build_artifact_version 3.8
-build_artifact_version 3.9
+# build_artifact_version 3.6
+# build_artifact_version 3.7
+# build_artifact_version 3.8
+# build_artifact_version 3.9
