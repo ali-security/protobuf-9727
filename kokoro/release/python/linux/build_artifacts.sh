@@ -40,6 +40,7 @@ build_artifact_version() {
   sed -i '/Wno-sign-compare/a \ \ \ \ \ \ \ \ extra_compile_args.append("-std=c++11")' $REPO_DIR/python/setup.py
   cat $REPO_DIR/python/setup.py
 
+  export DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
   build_wheel $REPO_DIR/python $PLAT
 
   mv wheelhouse/* $ARTIFACT_DIR
@@ -49,7 +50,6 @@ build_artifact_version() {
   sudo rm -rf $REPO_DIR
 }
 
-build_artifact_version 2.7
 build_artifact_version 3.5
 build_artifact_version 3.6
 build_artifact_version 3.7
