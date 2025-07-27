@@ -47,8 +47,7 @@ build_artifact_version() {
   pushd $REPO_DIR/python
   wget https://github.com/protocolbuffers/protobuf/releases/download/v3.15.8/protoc-3.15.8-linux-x86_64.zip
   unzip protoc-3.15.8-linux-x86_64.zip
-  mv protoc-3.15.8-linux-x86_64/bin/protoc $REPO_DIR/src/protoc
-  mv protoc-3.15.8-linux-x86_64/include $REPO_DIR/src/include
+  mv bin/protoc $REPO_DIR/src/protoc
   popd
 
   # Build none-any.whl
