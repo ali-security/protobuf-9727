@@ -43,6 +43,14 @@ build_artifact_version() {
   export DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
   # build_wheel $REPO_DIR/python $PLAT
 
+  # Downloads protobuf-3.15.8
+  pushd $REPO_DIR/python
+  wget https://github.com/protocolbuffers/protobuf/releases/download/v3.15.8/protoc-3.15.8-linux-x86_64.zip
+  unzip protoc-3.15.8-linux-x86_64.zip
+  mv protoc-3.15.8-linux-x86_64/bin/protoc $REPO_DIR/src/protoc
+  mv protoc-3.15.8-linux-x86_64/include $REPO_DIR/src/include
+  popd
+
   # Build none-any.whl
   pushd $REPO_DIR/python
   python setup.py bdist_wheel --universal
