@@ -41,7 +41,7 @@ build_artifact_version() {
   cat $REPO_DIR/python/setup.py
 
   export DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
-  # build_wheel $REPO_DIR/python $PLAT
+  build_wheel $REPO_DIR/python $PLAT
 
   # Downloads protobuf-3.15.8
   pushd $REPO_DIR/python
